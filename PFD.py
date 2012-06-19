@@ -1,12 +1,26 @@
 #!/usr/bin/env python
 
-"""
+
 class VertexPFD:
-    def __init__(self, a, b, c)
-	self.pred = a
-	self.preds = [0] * b
-	self.succs = [0]
+    def __init__(self, b) :
+	self.id = b[0]
+	self.pred = b[1]
+	self.preds = [0] * b[1]
+	self.succ = []
+	i = 2
+	while i < len(b) :
+	    self.preds[i - 2] = b[i] 
+
+
+# ------------
+# pfd_compare
+# ------------
 """
+compare function for sorting the list of VertexPFD so they will be be at the correct index
+"""
+def compare(a, b):
+        return cmp(int(a.id), int(b.id))
+
 
 
 # ------------
@@ -51,7 +65,33 @@ def pfd_read_rest (r, b) :
 	i += 1
     for j in b :
 	assert j > -1 and j <101
-    return True        
+    return True 
+
+# -------------
+# pfd_eval
+# -------------
+
+def pfd_eval (vs) :
+    """
+    solves the tasks for a permutation that is a valid order of the tasks
+    vs is the list of VertexPFD with the index equal to the vertex number
+    """ 
+    z = []
+    for i in vs :
+	  
+
+
+# -------------
+# pfd_print
+# -------------
+
+def pfd_print (r) :
+    """
+    prints the resulting permutation that is passed in
+    r is the list of ints that holds the result
+    return
+    """   
+       
 
 # -------------
 # pfd_solve
@@ -64,8 +104,18 @@ def pfd_solve (r, w) :
     w is a writer
     """
     a = [0, 0]
-    b = [0] * 102
+    b = [0] * 100
     pfd_read_first(r, a)
-    while pfd_read_rest(r, b, vs) :
-        v = pfd_eval(a[0], a[1])
-        pfd_print(w, a[0], a[1], v)
+    c = [0] * a[0]
+    vs = [None]
+    while pfd_read_rest(r, b) :
+        v = VertexPFD(b)
+	vs.append(v)
+    vs.sort(compare)
+    for i in vs :
+	if i.pred != 0 :
+	    for j in i.preds :
+		vs[j].succ.append (i.id)
+    r = pfd_solve (vs)
+
+	
