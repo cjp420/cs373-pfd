@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import heapq
+
 
 class VertexPFD:
     def __init__(self, b) :
@@ -12,16 +14,6 @@ class VertexPFD:
 	while i < len(b) :
 	    self.preds.append (b[i]) 
 	    i += 1
-
-
-# ------------
-# pfd_compare
-# ------------
-"""
-compare function for sorting the list of VertexPFD so they will be be at the correct index
-"""
-def compare(a, b):
-        return cmp(int(a.id), int(b.id))
 
 
 
@@ -82,21 +74,22 @@ def pfd_eval (vs) :
     r = []
     low = 0
     while  True:
-        z = []
+	z = []
         for i in vs.keys() :
 	    if vs[i].pred == 0 and not vs[i].done :
-	        z.append (vs[i].id)
+	        heapq.heappush(z, i)
         if len (z) == 0 :
             break
-        low = 105
-        j = 0
-        while j < len (z) :
-	    if z[j] < low :
-	        low = z[j]
-	    j += 1
-        r.append (low)
-        vs[low].done = True
-        for k in vs[low].succ :
+        #low = 105
+        #j = 0
+        #while j < len (z) :
+	    #if z[j] < low :
+	        #low = z[j]
+	    #j += 1
+	o = heapq.heappop(z)
+        r.append (o)
+        vs[o].done = True
+        for k in vs[o].succ :
 	    vs[k].pred -= 1
     assert len (r) > 0
     return r
@@ -115,8 +108,7 @@ def pfd_print (w, re) :
     s = ""
     for i in re :
 	s += (str (i) + " ")
-    s += "\n"
-    w.write (s)
+    w.write (s + "\n")
 
 # -------------
 # pfd_solve
@@ -138,19 +130,18 @@ def pfd_solve (r, w) :
 	i += 1
     while pfd_read_rest(r, b) :
         vs[b[0]].pred = b[1]
-	print b[0]
-	print (vs[b[0]].pred)
+	#print b[0]
+	#print (vs[b[0]].pred)
         k = 2
 	while k < len(b) :
 	    vs[b[0]].preds.append (b[k])
-	    print (str (vs[b[0]].preds)) 
+	    #print (str (vs[b[0]].preds)) 
 	    k += 1
         del b[:]
     for i in vs.keys() :
 	if vs[i].pred != 0 :
 	    for j in vs[i].preds :
 		vs[j].succ.append (vs[i].id)
-		print (str (vs[j].succ) )
     re = pfd_eval (vs)
     pfd_print (w, re)
 
