@@ -1,0 +1,34 @@
+Jun 19, 2012
+
+    Since the program was giving the correct output, I went ahead and cha…
+    a3f9d197d8 Browse code
+    cjp420 authored 4 minutes ago
+
+    put together SpherePFD.py and it was accepted by Sphere
+    9a312132e7 Browse code
+    cjp420 authored 2 hours ago
+
+    finished the solve and wrote the print method and ready to test
+    0da5d36369 Browse code
+    cjp420 authored 2 hours ago
+
+    finished the solve method and a compare method for sorting and starte…
+    f38132dad6 Browse code
+    cjp420 authored 8 hours ago
+
+Jun 18, 2012
+
+    Finished writing and testing two read methods, one to read the first …
+    e2bf2b0453 Browse code
+    cjp420 authored a day ago
+
+    Wrote RunPFD.py and started a couple of methods in PFD.py including a…
+    e2aadcb1ad Browse code
+    cjp420 authored a day ago
+
+Jun 17, 2012
+
+    first commit
+    09c4ece2b5 Browse code
+    cjp420 authored 2 days ago
+

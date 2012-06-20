@@ -6,7 +6,7 @@ Last Name:Perez
 EID:cjp420
 E-mail:christian.perez@utexas.edu
 Estimated number of hours:8
-Actual number of hours:
+Actual number of hours:12
 
 Turnin CS Username:cperez
 GitHub ID:cjp420
